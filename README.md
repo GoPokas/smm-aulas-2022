@@ -1,2 +1,7 @@
 # SMM aulas 2022
-Framework PHP muito simples para auxiliar alunos em PAP
+Exemplo realizado no decorrer das aulas (PSI)
+com base na micro Framework PHP fornecida pelos docentes.
+
+<sup>
+<sup>AE Santa Maria Maior - Viana do Castelo</sup>
+</sup>

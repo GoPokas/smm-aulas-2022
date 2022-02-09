@@ -2,7 +2,8 @@
 
 require_once SYS_CLASSES . 'AbsUser.php';
 
-function isUserClassDefined(): bool {
+function isUserClassDefined(): bool
+{
     return defined('USER_CLASS') && USER_CLASS && file_exists(APP_MODELS . USER_CLASS . '.php');
 }
 
@@ -22,13 +23,15 @@ class Auth
     /**
      * @return Auth
      */
-    public static function instance() {
+    public static function instance()
+    {
         static::$single_instance = static::$single_instance ?? new static();
         return static::$single_instance;
     }
 
-    private function __construct() {
-        if ( !array_key_exists(static::$key, $_SESSION)) {
+    private function __construct()
+    {
+        if (!array_key_exists(static::$key, $_SESSION)) {
             $_SESSION[static::$key] = [];
         }
     }
@@ -37,7 +40,8 @@ class Auth
      * @param AbsUser|null $user
      * @return int $user_id | 0
      */
-    public function user(&$user) {
+    public function user(&$user)
+    {
         $result = 0;
         $user = null;
 
@@ -50,17 +54,23 @@ class Auth
         return $result;
     }
 
-    public function login(string $username, string $pass) {
+    /**
+     * @return int $user_id | 0
+     */
+    public function userID() { return $this->user($user); }
+
+    public function login(string $username, string $pass)
+    {
 
         $useClassName = USER_CLASS;
         /** @var AbsUser $user */
         $user = new $useClassName;
 
         $sql = sprintf("SELECT * FROM %s WHERE (%s=:un OR %s=:em) AND %s=:psw ;",
-                       USER_TABLE,
-                       $user->getUsernameFieldName(),
-                       $user->getEmailFieldName(),
-                       $user->getPasswordField()
+            USER_TABLE,
+            $user->getUsernameFieldName(),
+            $user->getEmailFieldName(),
+            $user->getPasswordField()
         );
         $users = bd()->fetchQuery($sql, [
             'un' => $username,
@@ -76,14 +86,16 @@ class Auth
         return false;
     }
 
-    public function haveUserOrReditectTo($to = 'login') {
+    public function haveUserOrReditectTo($to = 'login')
+    {
 
-        if ( !isUserClassDefined()) return false;
+        if (!isUserClassDefined()) return false;
         if ($this->user($user)) return $user;
         redirect($to);
     }
 
-    public function logout() {
+    public function logout()
+    {
         $_SESSION[self::$key] = false;
         return $this;
     }

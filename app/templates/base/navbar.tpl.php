@@ -13,6 +13,12 @@
                     <a class="nav-link <?= url()->classeIf('home') ?>"
                        href="<?= url()->to('home') ?>">Home</a>
                 </li>
+                <?php if($is_admin??false): ?>
+                <li class="nav-item">
+                    <a class="nav-link <?= url()->classeIf('projetos') ?>"
+                       href="<?= url()->to('projetos') ?>">Projetos</a>
+                </li>
+                <?php endif; ?>
             </ul>
             <?php
             if (auth()->user($user)) : ?>

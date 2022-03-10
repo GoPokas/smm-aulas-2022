@@ -1,10 +1,5 @@
 <?php
-
-//-------------------------------------------------------
-// Redefinir as constantes deste bloco!
-//-------------------------------------------------------
-
-define("WEBROOT", 'http://pap.loc/tarefas' . DIRECTORY_SEPARATOR);
+define("WEBROOT", '/tarefas' . DIRECTORY_SEPARATOR);
 
 // tag Title
 define('PRJ_TITLE', 'Gest. Tarefas');
@@ -12,7 +7,7 @@ define('PRJ_TITLE', 'Gest. Tarefas');
 // consts para acesso a BD usadas em BDService
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root'); // 'root' on ubuntu // 'root' on XAMPP // MAC: gestpt_user
-define('DB_PASS', 'root'); // 'root' on ubuntu // ''     on XAMPP //      gestpt_pass
+define('DB_PASS', ''); // 'root' on ubuntu // ''     on XAMPP //      gestpt_pass
 define('DB_NAME', 'smm_tarefas');
 
 define('USER_CLASS', 'Utilizador');
